@@ -11,8 +11,8 @@ class Answer extends Model
 
     protected $guarded = ['id'];
 
-    public function user()
+    public function doctor()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Doctor::class);
     }
 }

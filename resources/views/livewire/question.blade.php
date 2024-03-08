@@ -172,9 +172,13 @@
                             <p class="text-secondary">
                                 {!! html_entity_decode($answer->answer) !!}
                             </p>
-                            <p class="text-secondary">
-                                Di jawab oleh : {{ $answer->user->name }}
-                            </p>
+                            <div class="d-flex justify-content-start">
+                                <span class="avatar"
+                                    style="background-image: url({{ asset(Storage::url($answer->doctor->photo)) }})"></span>
+                                <p class="text-secondary ms-3 pt-2">
+                                    Di jawab oleh : <b>{{ $answer->doctor->name }}</b>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

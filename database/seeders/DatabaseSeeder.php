@@ -20,6 +20,26 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('M3g4bl00d2018!@#')
         ]);
 
+        \App\Models\Doctor::create([
+            'name' => 'dr. Ferri Sabaruddin, SpOG.',
+            'photo' => 'photo/ferri.jpg'
+        ]);
+
+        \App\Models\Doctor::create([
+            'name' => 'dr. Kharnina Chatar, Sp.A.',
+            'photo' => 'photo/kharnina.png'
+        ]);
+
+        \App\Models\Doctor::create([
+            'name' => 'dr. Rendra Ramadya',
+            'photo' => 'photo/rendra.jpg'
+        ]);
+
+        \App\Models\Doctor::create([
+            'name' => 'dr. Pangeran Edwin K.',
+            'photo' => 'photo/pangeran.jpg'
+        ]);
+
         \App\Models\Category::create([
             'name' => 'Kebidanan & Kandungan',
             'slug' => 'kebidanan-kandungan'

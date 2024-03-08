@@ -83,11 +83,26 @@ class Question extends Component
             ], [
                 'jawaban.required' => 'Form jawaban belum kamu isi!'
             ]);
-            $answer = Answer::create([
-                'user_id' => auth()->id(),
-                'answer' => $this->jawaban
-            ]);
             $question = Quest::find($this->id);
+            switch ($question->category->name) {
+                case('Kebidanan & Kandungan') :
+                    $doctor_id = 1;
+                    break;
+                case('Anak') :
+                    $doctor_id = 2; 
+                    break;  
+                case('Umum') :
+                    $doctor_id = 4; 
+                    break; 
+                case('Kecantikan') :
+                    $doctor_id = 3;
+                    break;  
+                default :                   
+            } 
+            $answer = Answer::create([
+                'doctor_id' => $doctor_id,
+                'answer' => $this->jawaban
+            ]);             
             $question->update([
                 'answered' => 1,
                 'status' => 'active'
