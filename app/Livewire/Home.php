@@ -30,38 +30,45 @@ class Home extends Component
             $this->dispatch('error', 'Kami berpikir kamu adalah robot, harap refresh dan ulangi lagi!');
         } else {
             $this->recaptchaValid = true;
+            return true;
         }
     }
 
     public function save()
     {
-        $this->validate([
-            'nama' => 'required|max:100',
-            'judul' => 'required',
-            'kategori' => 'required',
-            'pertanyaan' => 'required',
-            'gambar' => 'mimes:png,jpg,jpeg|nullable|max:2048'
-        ]);
-        $this->recaptchaResponse($this->recaptchaToken);  
-        if($this->recaptchaValid) {
-            if ($this->gambar) {
-                $gambar = $this->gambar->store('public');
-            } else {
-                $gambar = null;
-            } 
-            Question::create([
-                'name' => $this->nama,
-                'title' => $this->judul,
-                'question' => $this->pertanyaan,
-                'category_id' => $this->kategori,
-                'image' => $gambar,
-                'answered' => 0,
-                'status' => 'hold'
+        $valid = $this->recaptchaResponse($this->recaptchaToken);
+        if($valid) {
+            $validation = $this->validate([
+                'nama' => 'required|max:100',
+                'judul' => 'required',
+                'kategori' => 'required',
+                'pertanyaan' => 'required',
+                'gambar' => 'mimes:png,jpg,jpeg|nullable|max:2048',
+                'recaptchaToken' => 'required'
             ]);
-            $this->reset();
-            $this->dispatch('success', 'Pertanyaan berhasil di Post. Pertanyaan kamu akan muncul beberapa saat setelah kami melakukan pengecekan.');
-            $this->dispatch('modal-create-close');
-        }                       
+            if($validation) {              
+                if($this->recaptchaValid) {
+                    if ($this->gambar) {
+                        $gambar = $this->gambar->store('public');
+                    } else {
+                        $gambar = null;
+                    } 
+                    Question::create([
+                        'name' => $this->nama,
+                        'title' => $this->judul,
+                        'question' => $this->pertanyaan,
+                        'category_id' => $this->kategori,
+                        'image' => $gambar,
+                        'answered' => 0,
+                        'status' => 'hold'
+                    ]);
+                    $this->reset();
+                    $this->dispatch('success', 'Pertanyaan berhasil di Post. Pertanyaan kamu akan muncul beberapa saat setelah kami melakukan pengecekan.');
+                    $this->dispatch('modal-create-close');
+                }      
+            }     
+        } 
+                           
     }    
 
     public function acceptConfirm($id)

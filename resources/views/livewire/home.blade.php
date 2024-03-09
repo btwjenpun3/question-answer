@@ -506,10 +506,16 @@
                                 <input type="file" class="form-control @error('gambar') is-invalid @enderror"
                                     wire:model="gambar">
                                 @error('gambar')
-                                    <div class="invalid-feedback" wire:ignore>{{ $message }}</div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="g-recaptcha mt-3 mb-3" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                            <div wire:ignore>
+                                <div class="g-recaptcha mt-3 mb-3" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}">
+                                </div>
+                                @error('recaptchaToken')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
@@ -664,11 +670,6 @@
             });
             $wire.on('modal-delete-close', function() {
                 $('#delete').modal('hide');
-            });
-
-            document.querySelector('button').addEventListener('click', function() {
-                var token = document.getElementById('recaptcha-token').value;
-                Livewire.emit('recaptchaToken', token);
             });
         </script>
     @endscript
