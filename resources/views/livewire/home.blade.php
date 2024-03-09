@@ -455,65 +455,69 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="form-label required">Nama</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                wire:model="nama">
-                            @error('nama')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                    <form wire:submit="save">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label required">Nama</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                    wire:model="nama">
+                                @error('nama')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label required">Kategori</label>
+                                <select class="form-control @error('kategori') is-invalid @enderror"
+                                    wire:model="kategori">
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="1">Kebidanan & Kandungan</option>
+                                    <option value="2">Anak</option>
+                                    <option value="3">Umum</option>
+                                    <option value="4">Kecantikan</option>
+                                </select>
+                                @error('kategori')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label required">Kategori</label>
-                            <select class="form-control @error('kategori') is-invalid @enderror"
-                                wire:model="kategori">
-                                <option value="">-- Pilih Kategori --</option>
-                                <option value="1">Kebidanan & Kandungan</option>
-                                <option value="2">Anak</option>
-                                <option value="3">Umum</option>
-                                <option value="4">Kecantikan</option>
-                            </select>
-                            @error('kategori')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <label class="form-label required">Judul</label>
+                                <input type="text" class="form-control @error('judul') is-invalid @enderror"
+                                    wire:model="judul">
+                                @error('judul')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label required">Judul</label>
-                            <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                                wire:model="judul">
-                            @error('judul')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <label class="form-label required">Pertanyaan</label>
+                                <textarea class="form-control @error('pertanyaan') is-invalid @enderror" data-bs-toggle="autosize"
+                                    placeholder="Type something…"
+                                    style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 60px;"
+                                    wire:model="pertanyaan"></textarea>
+                                @error('pertanyaan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label class="form-label">Gambar</label>
+                                <input type="file" class="form-control @error('gambar') is-invalid @enderror"
+                                    wire:model="gambar">
+                                @error('gambar')
+                                    <div class="invalid-feedback" wire:ignore>{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="g-recaptcha mt-3 mb-3" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label required">Pertanyaan</label>
-                            <textarea class="form-control @error('pertanyaan') is-invalid @enderror" data-bs-toggle="autosize"
-                                placeholder="Type something…"
-                                style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 60px;"
-                                wire:model="pertanyaan"></textarea>
-                            @error('pertanyaan')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="modal-footer">
+                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" wire:loading.target="save"
+                                wire:loading.attr="disabled"
+                                wire:click="$set('recaptchaToken', grecaptcha.getResponse())">Kirim</button>
                         </div>
-                        <div class="col-md-12 mt-3">
-                            <label class="form-label">Gambar</label>
-                            <input type="file" class="form-control @error('gambar') is-invalid @enderror"
-                                wire:model="gambar">
-                            @error('gambar')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" wire:click="save"
-                        wire:loading.attr="disabled">Kirim</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -646,6 +650,9 @@
             $wire.on('success', (data) => {
                 toastr.success(data);
             });
+            $wire.on('error', (data) => {
+                toastr.error(data);
+            });
             $wire.on('modal-create-close', function() {
                 $('#create').modal('hide');
             });
@@ -657,6 +664,11 @@
             });
             $wire.on('modal-delete-close', function() {
                 $('#delete').modal('hide');
+            });
+
+            document.querySelector('button').addEventListener('click', function() {
+                var token = document.getElementById('recaptcha-token').value;
+                Livewire.emit('recaptchaToken', token);
             });
         </script>
     @endscript
