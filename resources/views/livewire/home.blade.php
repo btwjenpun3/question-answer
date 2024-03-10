@@ -133,11 +133,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if ($question->answered === 0)
+                                            @if ($question->answered == '0')
                                                 <div class="ribbon bg-warning">
                                                     Aktif
                                                 </div>
-                                            @elseif ($question->answered === 1)
+                                            @elseif ($question->answered == '1')
                                                 <div class="ribbon bg-success">
                                                     Terjawab
                                                 </div>
