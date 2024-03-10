@@ -5,7 +5,7 @@
     <div class="row g-4">
         <div class="col-md-3">
             <div class="form-label">
-                Filter
+                Silahkan Filter untuk Membaca Kategori Pertanyaan dan Klik Judul
                 <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                     title="Pilih untuk mencari sesuai kategori pertanyaan" wire:ignore>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="24"
