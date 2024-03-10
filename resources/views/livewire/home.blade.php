@@ -5,7 +5,7 @@
     <div class="row g-4">
         <div class="col-md-3">
             <div class="form-label">
-                Silahkan Filter untuk Membaca Kategori Pertanyaan dan Klik Terjawab untuk Melihat Jawaban
+                Silahkan Filter untuk Membaca Kategori Pertanyaan dan Klik TERJAWAB untuk Melihat Jawaban
                 <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                     title="Pilih untuk mencari sesuai kategori pertanyaan" wire:ignore>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="24"
@@ -80,7 +80,7 @@
                                                 <div class="row">
                                                     <div class="col-md">
                                                         <div
-                                                            class="list-inline list-inline-dots mb-0 text-muted d-sm-block d-none">
+                                                            class="list-inline list-inline-dots mb-0 text-muted d-sm-block">
                                                             <div class="list-inline-item">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                     class="icon icon-tabler icon-tabler-folder"
@@ -207,7 +207,7 @@
                                                     <div class="row">
                                                         <div class="col-md">
                                                             <div
-                                                                class="list-inline list-inline-dots mb-0 text-muted d-sm-block d-none">
+                                                                class="list-inline list-inline-dots mb-0 text-muted d-sm-block">
                                                                 <div class="list-inline-item">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         class="icon icon-tabler icon-tabler-folder"
@@ -340,7 +340,7 @@
                                                     <div class="row">
                                                         <div class="col-md">
                                                             <div
-                                                                class="list-inline list-inline-dots mb-0 text-muted d-sm-block d-none">
+                                                                class="list-inline list-inline-dots mb-0 text-muted d-sm-block">
                                                                 <div class="list-inline-item">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         class="icon icon-tabler icon-tabler-folder"
