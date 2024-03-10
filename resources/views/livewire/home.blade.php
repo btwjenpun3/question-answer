@@ -46,17 +46,12 @@
                 <div class="space-y">
                     @if ($questions->isEmpty())
                         <div class="card">
-                            <div class="row g-0">
-                                <div class="col">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <div
-                                                    class="list-inline list-inline-dots mb-0 text-muted d-sm-block d-none">
-                                                    <div class="list-inline-item">
-                                                        Belum ada pertanyaan
-                                                    </div>
-                                                </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="list-inline list-inline-dots mb-0 text-muted d-sm-block">
+                                            <div class="list-inline-item">
+                                                Belum ada pertanyaan
                                             </div>
                                         </div>
                                     </div>
@@ -465,7 +460,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-3 mt-md-0">
                                 <label class="form-label required">Kategori</label>
                                 <select class="form-control @error('kategori') is-invalid @enderror"
                                     wire:model="kategori">
