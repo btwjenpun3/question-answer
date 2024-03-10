@@ -134,13 +134,17 @@
                                                 </div>
                                             </div>
                                             @if ($question->answered == '0')
-                                                <div class="ribbon bg-warning">
-                                                    Aktif
-                                                </div>
+                                                <a href="{{ route('question', ['id' => $question->id]) }}">
+                                                    <div class="ribbon bg-warning">
+                                                        Aktif
+                                                    </div>
+                                                </a>
                                             @elseif ($question->answered == '1')
-                                                <div class="ribbon bg-success">
-                                                    Terjawab
-                                                </div>
+                                                <a href="{{ route('question', ['id' => $question->id]) }}">
+                                                    <div class="ribbon bg-success">
+                                                        Terjawab
+                                                    </div>
+                                                </a>
                                             @endif
                                             @can('admin')
                                                 <div class="card-footer d-flex justify-content-end">
@@ -256,9 +260,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="ribbon bg-secondary">
-                                                    Hold
-                                                </div>
+                                                <a href="{{ route('question', ['id' => $question->id]) }}">
+                                                    <div class="ribbon bg-secondary">
+                                                        Hold
+                                                    </div>
+                                                </a>
                                                 <div class="card-footer d-flex justify-content-end">
                                                     <button class="btn btn-outline-success me-1" data-bs-toggle="modal"
                                                         data-bs-target="#accept"
@@ -387,9 +393,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="ribbon bg-secondary">
-                                                    Di Arsipkan
-                                                </div>
+                                                <a href="{{ route('question', ['id' => $question->id]) }}">
+                                                    <div class="ribbon bg-secondary">
+                                                        Di Arsipkan
+                                                    </div>
+                                                </a>
                                                 <div class="card-footer d-flex justify-content-end">
                                                     <button class="btn btn-outline-success me-1" data-bs-toggle="modal"
                                                         data-bs-target="#accept"
