@@ -40,19 +40,19 @@
                         <span class="card-subtitle ms-auto">{{ $question->created_at }} WIB</span>
                     </div>
                 </div>
-                @if ($question->status === 'hold')
+                @if ($question->status == 'hold')
                     <div class="ribbon bg-secondary">
                         Hold
                     </div>
-                @elseif ($question->status === 'active' && $question->answered === 1)
+                @elseif ($question->status == 'active' && $question->answered == '1')
                     <div class="ribbon bg-success">
                         Terjawab
                     </div>
-                @elseif ($question->status === 'active' && $question->answered === 0)
+                @elseif ($question->status == 'active' && $question->answered == '0')
                     <div class="ribbon bg-warning">
                         Aktif
                     </div>
-                @elseif ($question->status === 'archive')
+                @elseif ($question->status == 'archive')
                     <div class="ribbon bg-secondary">
                         Di Arsipkan
                     </div>
