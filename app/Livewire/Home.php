@@ -60,7 +60,6 @@ class Home extends Component
                            <b>Pertanyaan : </b>' . $this->pertanyaan,
                 'parse_mode' => 'HTML'
             ]);
-            dd($response);
             $this->reset();
             $this->dispatch('success', 'Pertanyaan berhasil di Post. Pertanyaan kamu akan muncul beberapa saat setelah kami melakukan pengecekan.');
             $this->dispatch('modal-create-close');
