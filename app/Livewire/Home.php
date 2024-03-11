@@ -52,13 +52,14 @@ class Home extends Component
                 'answered' => 0,
                 'status' => 'hold'
             ]);
-            $response = Http::post('https://api.telegram.org/bot' . env('TELEGRAM_BOT_TOKEN') . '/sendMessage', [
+            $response = Http::post('https://api.telegram.org/bot' . env('TELEGRAM_TOKEN') . '/sendMessage', [
                 'chat_id' => env('TELEGRAM_CHAT_ID'),
-                'text' => 'Ada Pertanyaan!
-                           <b>Nama : </b>' . $this->nama . '
-                           <b>Kategori : </b>' . $this->kategori . '
-                           <b>Pertanyaan : </b>' . $this->pertanyaan,
-                'parse_mode' => 'HTML'
+                'text' => 'Ada Pertanyaan Baru\!
+                
+*Nama : *' . $this->nama . '
+*Kategori : *' . $this->kategori . '
+*Pertanyaan : *' . $this->pertanyaan,
+                'parse_mode' => 'MarkdownV2'
             ]);
             $this->reset();
             $this->dispatch('success', 'Pertanyaan berhasil di Post. Pertanyaan kamu akan muncul beberapa saat setelah kami melakukan pengecekan.');
