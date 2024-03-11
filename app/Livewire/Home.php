@@ -55,12 +55,13 @@ class Home extends Component
             $response = Http::post('https://api.telegram.org/bot' . env('TELEGRAM_TOKEN') . '/sendMessage', [
                 'chat_id' => env('TELEGRAM_CHAT_ID'),
                 'text' => 'Ada Pertanyaan Baru\!
-                
+
 *Nama : *' . $this->nama . '
 *Kategori : *' . $this->kategori . '
 *Pertanyaan : *' . $this->pertanyaan,
                 'parse_mode' => 'MarkdownV2'
             ]);
+            dd($response->json());
             $this->reset();
             $this->dispatch('success', 'Pertanyaan berhasil di Post. Pertanyaan kamu akan muncul beberapa saat setelah kami melakukan pengecekan.');
             $this->dispatch('modal-create-close');
